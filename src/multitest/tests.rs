@@ -966,6 +966,9 @@ fn query_total_bid() {
     )
     .unwrap();
 
+    let resp = contract.query_total_bid(&app, &sender).unwrap();
+    assert_eq!(resp, Uint128::new(0));
+
     // Making a simple bid
     contract
         .bid(&mut app, &sender, &coins(3_500_000, UATOM))

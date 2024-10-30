@@ -8,7 +8,7 @@ use crate::{
 pub fn total_bid(deps: Deps, address: String) -> StdResult<Uint128> {
     let address = deps.api.addr_validate(&address)?;
 
-    BIDS.load(deps.storage, &address)
+    Ok(BIDS.may_load(deps.storage, &address)?.unwrap_or_default())
 }
 
 pub fn highest_bid(deps: Deps) -> StdResult<BidResp> {
